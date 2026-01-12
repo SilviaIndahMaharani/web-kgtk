@@ -31,7 +31,7 @@ const Home = ({
   return (
     <Base>
       {/* Banner */}
-      <section className="section banner relative pb-0">
+      <section className="banner relative py-8 pb-0">
         <ImageFallback
           className="absolute bottom-0 left-0 z-[-1] w-full"
           src={"/images/banner-bg-shape.svg"}
@@ -64,7 +64,7 @@ const Home = ({
                   <ImageFallback
                     className="mx-auto object-contain"
                     src={banner.image}
-                    width={548}
+                    width={455}
                     height={443}
                     priority={true}
                     alt="Banner Image"
