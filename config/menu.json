@@ -1,0 +1,134 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Profil",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Sejarah",
+          "url": "/categories"
+        },
+         {
+          "name": "Visi dan Misi",
+          "url": "/categories"
+        },
+         {
+          "name": "Tugas dan Fungsi",
+          "url": "/categories"
+        },
+         {
+          "name": "Struktur Organisasi",
+          "url": "/categories"
+        },
+         {
+          "name": "ZiWBK",
+          "url": "/categories"
+        },
+         {
+          "name": "Lakin",
+          "url": "/categories"
+        },
+         {
+          "name": "Renstra",
+          "url": "/categories"
+        },
+         {
+          "name": "Perjanjian Kinerja",
+          "url": "/categories"
+        }
+      ]
+    },
+    {
+      "name": "Program",
+      "url": "/elements"
+    },
+     {
+      "name": "Publikasi",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Berita",
+          "url": "/categories"
+        },
+        {
+          "name": "Siaran Pers",
+          "url": "/categories"
+        },
+        {
+          "name": "Sastra Melayu",
+          "url": "/categories"
+        }
+      ]
+    },
+    {
+      "name": "PPID",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Maklumat Pelayanan",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Pengaduan",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Kerja Sama Antar Instansi",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Permohonan Informasi",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Permohonan Narasumber",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Peminjaman Sarana Prasarana",
+          "url": "/categories"
+        },
+        {
+          "name": "Pelayanan Fasilitas Peningkatan Kompetensi Pendidik dan Tenaga Kependidikan",
+          "url": "/categories"
+        }
+      ]
+    },
+    {
+      "name": "Hubungi Kami",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Biodata",
+          "url": "/categories"
+        }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    },
+    {
+      "name": "Privacy Policy",
+      "url": "#"
+    }
+  ]
+}
