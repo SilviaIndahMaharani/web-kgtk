@@ -11,6 +11,11 @@ import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar } from "react-icons/fa";
+
+// ✅ tambahan untuk dark/light background
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 const { blog_folder, pagination } = config.settings;
 
 const Home = ({
@@ -28,13 +33,20 @@ const Home = ({
   );
   const showPosts = pagination;
 
+  // ✅ Theme (dark/light) safe untuk SSR
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted && (theme === "dark" || resolvedTheme === "dark");
+
   return (
     <Base>
       {/* Banner */}
       <section className="banner relative py-8 pb-0">
         <ImageFallback
-          className="absolute bottom-0 left-0 z-[-1] w-full"
-          src={"/images/banner-bg-shape.svg"}
+          className="absolute bottom-0 left-0 z-[-1] w-full dark:opacity-40"
+          // ✅ switch SVG sesuai mode
+          src={isDark ? "/images/wave-dark.svg" : "/images/wave-light.svg"}
           width={1905}
           height={295}
           alt="banner-shape"
@@ -43,33 +55,42 @@ const Home = ({
 
         <div className="container">
           <div className="row flex-wrap-reverse items-center justify-center lg:flex-row">
-            <div className={banner.image_enable ? "mt-12 text-center lg:mt-0 lg:text-left lg:col-6" : "mt-12 text-center lg:mt-0 lg:text-left lg:col-12"}>
+            <div
+              className={
+                banner.image_enable
+                  ? "mt-12 text-center lg:mt-0 lg:text-left lg:col-6"
+                  : "mt-12 text-center lg:mt-0 lg:text-left lg:col-12"
+              }
+            >
               <div className="banner-title">
                 {markdownify(banner.title, "h1")}
                 {markdownify(banner.title_small, "span")}
               </div>
+
               {markdownify(banner.content, "p", "mt-4")}
+
               {banner.button.enable && (
-                  <Link
-                    className="btn btn-primary mt-6"
-                    href={banner.button.link}
-                    rel={banner.button.rel}
-                  >
-                    {banner.button.label}
-                  </Link>
+                <Link
+                  className="btn btn-primary mt-6"
+                  href={banner.button.link}
+                  rel={banner.button.rel}
+                >
+                  {banner.button.label}
+                </Link>
               )}
             </div>
+
             {banner.image_enable && (
-                <div className="col-9 lg:col-6">
-                  <ImageFallback
-                    className="mx-auto object-contain"
-                    src={banner.image}
-                    width={455}
-                    height={443}
-                    priority={true}
-                    alt="Banner Image"
-                  />
-                </div>
+              <div className="col-9 lg:col-6">
+                <ImageFallback
+                  className="mx-auto object-contain"
+                  src={banner.image}
+                  width={455}
+                  height={443}
+                  priority={true}
+                  alt="Banner Image"
+                />
+              </div>
             )}
           </div>
         </div>
@@ -89,6 +110,7 @@ const Home = ({
                       <div className="md:col-6">
                         <Post post={featuredPosts[0]} />
                       </div>
+
                       <div className="scrollbar-w-[10px] mt-8 max-h-[480px] scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0 md:col-6">
                         {featuredPosts
                           .slice(1, featuredPosts.length)
@@ -109,6 +131,7 @@ const Home = ({
                                   height={85}
                                 />
                               )}
+
                               <div>
                                 <h3 className="h5 mb-2">
                                   <Link
@@ -165,6 +188,7 @@ const Home = ({
                 currentPage={1}
               />
             </div>
+
             {/* sidebar */}
             <Sidebar
               className={"lg:mt-[9.5rem]"}
@@ -185,6 +209,7 @@ export const getStaticProps = async () => {
   const homepage = await getListPage("content/_index.md");
   const { frontmatter } = homepage;
   const { banner, featured_posts, recent_posts, promotion } = frontmatter;
+
   const posts = getSinglePage(`content/${blog_folder}`);
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
 
@@ -200,8 +225,8 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      banner: banner,
-      posts: posts,
+      banner,
+      posts,
       featured_posts,
       recent_posts,
       promotion,
